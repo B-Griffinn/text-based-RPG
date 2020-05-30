@@ -20,6 +20,7 @@ class Player:
         self.hp = 0
         self.mp = 0
         self.status_effects = []
+        self.location = 'start'
 
 
 # Initialize a player
@@ -73,5 +74,87 @@ def help_menu():
     print('- Good luck and have fun              ')
     title_screen_selections()
 
+#### Game Functionality ####
+
 
 def start_game():
+    pass
+
+
+#### MAP ####
+ZONENAME = ''
+DESCRIPTION = 'description'
+EXAMINATION = 'examine'
+SOLVED = False
+UP = 'up, north'
+DOWN = 'down, south'
+LEFT = 'left, east'
+RIGHT = 'right, west'
+
+solved_places = {'a1': False, 'a2': False, 'a3': False, 'a4': False,
+                 'b1': False, 'b2': False, 'b3': False, 'b4': False,
+                 'c1': False, 'c2': False, 'c3': False, 'c4': False,
+                 'd1': False, 'd2': False, 'd3': False, 'd4': False}
+
+zone_map = {
+    'a1': {
+        ZONENAME: "Town Market",
+        DESCRIPTION: 'description',
+        EXAMINATION: 'examine',
+        SOLVED: False,
+        UP: '',
+        DOWN: 'b1',
+        LEFT: '',
+        RIGHT: 'a2',
+    },
+    'a2': {
+        ZONENAME: "Town Entrance",
+        DESCRIPTION: 'description',
+        EXAMINATION: 'examine',
+        SOLVED: False,
+        UP: '',
+        DOWN: 'b2',
+        LEFT: 'a1',
+        RIGHT: 'a3',
+    },
+    'a3': {
+        ZONENAME: "Town Square",
+        DESCRIPTION: 'description',
+        EXAMINATION: 'examine',
+        SOLVED: False,
+        UP: '',
+        DOWN: 'b3',
+        LEFT: 'a2',
+        RIGHT: 'a4',
+    },
+    'a4': {
+        ZONENAME: "Town Hall",
+        DESCRIPTION: 'description',
+        EXAMINATION: 'examine',
+        SOLVED: False,
+        UP: '',
+        DOWN: 'b4',
+        LEFT: 'a3',
+        RIGHT: '',
+    },
+    'b1': {
+        ZONENAME: "",
+        DESCRIPTION: 'description',
+        EXAMINATION: 'examine',
+        SOLVED: False,
+        UP: 'a1',
+        DOWN: 'c1',
+        LEFT: '',
+        RIGHT: 'b2',
+    },
+    'b2': {
+        ZONENAME: 'Home',
+        DESCRIPTION: 'This is your home.',
+        EXAMINATION: 'Your home looks the same - nothing has changed.',
+        SOLVED: False,
+        UP: 'a2',
+        DOWN: 'c2',
+        LEFT: 'b1',
+        RIGHT: 'b3',
+    },
+}
