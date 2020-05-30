@@ -21,7 +21,7 @@ class Player:
         self.hp = 0
         self.mp = 0
         self.status_effects = []
-        self.location = 'start'
+        self.location = 'b2'
         self.game_over = False
 
 
@@ -36,7 +36,7 @@ def title_screen_selections():
     option = input("~~> ")
 
     if option.lower() == ("play"):
-        start_game()  # TODO - placeholder
+        setup_game()  # TODO - placeholder
     elif option.lower() == ("help"):
         help_menu()   # TODO - placeholder
     elif option.lower() == ("quit"):
@@ -47,7 +47,7 @@ def title_screen_selections():
         option = input("~~> ")
 
         if option.lower() == ("play"):
-            start_game()  # TODO - placeholder
+            setup_game()  # TODO - placeholder
         elif option.lower() == ("help"):
             help_menu()   # TODO - placeholder
         elif option.lower() == ("quit"):
@@ -141,10 +141,6 @@ def main_game_loop():
         # here handle if puzzles have been solved, boss defeated, explored etc.
 
 
-def start_game():
-    pass
-
-
 #### MAP ####
 ZONENAME = ''
 DESCRIPTION = 'description'
@@ -233,7 +229,7 @@ def setup_game():
     for char in question1:
         sys.stdout.write(char)
         sys.stdout.flush()
-        time.sleep(0.05)
+        time.sleep(0.02)
     player_name = input("~~> ")
     myPlayer.name = player_name
 
@@ -259,40 +255,38 @@ def setup_game():
             myPlayer.job = player_job
             print(f"You are now a {player_job}\n")
     # PLayer stats
-    if myPlayer.job is 'warrior':
-        self.hp = 100
-        self.mp = 15
-    elif myPlayer.job is 'mage':
-        self.hp = 95
-        self.mp = 65
-    elif myPlayer.job is 'priest':
-        self.hp = 50
-        self.mp = 50
+    if myPlayer.job == 'warrior':
+        myPlayer.hp = 100
+        myPlayer.mp = 15
+    elif myPlayer.job == 'mage':
+        myPlayer.hp = 95
+        myPlayer.mp = 65
+    elif myPlayer.job == 'priest':
+        myPlayer.hp = 50
+        myPlayer.mp = 50
     # Introduction
     question3 = f"Weclome {player_name} the {player_job}.\n"
     for char in question3:
         sys.stdout.write(char)
         sys.stdout.flush()
-        time.sleep(0.05)
-    player_name = input("~~> ")
-    myPlayer.name = player_name
+        time.sleep(0.02)
 
-    speech1 = "Welcome to this fantasy world. "
-    speech2 = "Enjoy the adventure."
-    speech3 = "Just make sure to not lose your way..."
+    speech1 = "Welcome to this fantasy world.\n"
+    speech2 = "Enjoy the adventure.\n"
+    speech3 = "Just make sure to not lose your way...\n"
 
     for char in speech1:
         sys.stdout.write(char)
         sys.stdout.flush()
-        time.sleep(0.05)
+        time.sleep(0.01)
     for char in speech2:
         sys.stdout.write(char)
         sys.stdout.flush()
-        time.sleep(0.1)
+        time.sleep(0.01)
     for char in speech3:
         sys.stdout.write(char)
         sys.stdout.flush()
-        time.sleep(0.2)
+        time.sleep(0.02)
     os.system('clear')
     print("#############")
     print("Let's start now.")
