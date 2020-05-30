@@ -74,6 +74,63 @@ def help_menu():
     print('- Good luck and have fun              ')
     title_screen_selections()
 
+#### Game Interactivity ####
+
+
+def print_location():
+    print('\n' + ('#' * (4 + len(myPlayer.location))))
+    print('# ' + myPlayer.location.upper() + ' #')
+    print('# ' + zone_map[myPlayer.location][DESCRIPTION] + ' #')
+    print('\n' + ('#' * (4 + len(myPlayer.location))))
+
+
+def prompt():
+    print("\n" + "===============")
+    print("What would you like to do?")
+    action = input("~~> ")
+    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit',
+                          'examine', 'inspect', 'interact', 'look']
+    while action.lower() not in acceptable_actions:
+        print("Please use a known action")
+        action = input("~~> ")
+    if action.lower() == 'quit':
+        sys.exit()
+    elif action.lower() in ['move', 'go', 'travel', 'walk']:
+        player_move(action.lower())     # TODO
+    elif action.lower() in ['examine', 'inspect', 'interact', 'look']:
+        player_examine(action.lower())  # TODO
+
+
+def player_move(myAction):
+    ask = "Where would you like to move to?\n"
+    dest = input(ask)
+    if dest in ['up', 'north']:
+        destination = zone_map[myPlayer.location][UP]
+        movement_handler(destination)
+    elif dest in ['down', 'south']:
+        destination = zone_map[myPlayer.location][DOWN]
+        movement_handler(destination)
+    elif dest in ['left', 'west']:
+        destination = zone_map[myPlayer.location][LEFT]
+        movement_handler(destination)
+    elif dest in ['right', 'east']:
+        destination = zone_map[myPlayer.location][RIGHT]
+        movement_handler(destination)
+
+
+def movement_handler(destination):
+    print(f"\n You have moved to the {destination}.")
+    myPlayer.location = destination
+    print_location()
+
+
+def player_examine(action):
+    if zone_map[myPlayer.location][SOLVED]:
+        print("You have already exhausted this zone.")
+    else:
+        print("You can trigger puzzle here.")
+
+
 #### Game Functionality ####
 
 
@@ -88,8 +145,8 @@ EXAMINATION = 'examine'
 SOLVED = False
 UP = 'up, north'
 DOWN = 'down, south'
-LEFT = 'left, east'
-RIGHT = 'right, west'
+LEFT = 'left, west'
+RIGHT = 'right, east'
 
 solved_places = {'a1': False, 'a2': False, 'a3': False, 'a4': False,
                  'b1': False, 'b2': False, 'b3': False, 'b4': False,
@@ -157,4 +214,5 @@ zone_map = {
         LEFT: 'b1',
         RIGHT: 'b3',
     },
+    # TODO map remainder of map
 }
